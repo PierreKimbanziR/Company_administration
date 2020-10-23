@@ -11,7 +11,7 @@ def add_company(request):
         form = AddCompanyForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("home")
+            return redirect("company-home")
     else:
         form = AddCompanyForm()
 
