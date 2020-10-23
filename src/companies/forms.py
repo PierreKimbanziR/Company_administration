@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from .model import Company
+from .models import Company
 
 class AddCompanyForm(ModelForm):
 
     class Meta:
-        model : Company
-        fields : ["Name", "Country", "VAT Number", "Role"]
+        model = Company
+        fields =["Name", "Country", "Vat_Number", "Role"]

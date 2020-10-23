@@ -8,10 +8,10 @@ class Company(models.Model):
     roles = [("CLI", "Client"), ("PROV", "Provider")]
 
 
-    name = models.CharField(max_length=150)
-    country = models.CharField(max_length=150)
-    vat_number = models.IntegerField()
-    role = models.CharField(max_length=150, choices=roles, default=None)
+    Name = models.CharField(max_length=150)
+    Country = models.CharField(max_length=150)
+    Vat_Number = models.IntegerField()
+    Role = models.CharField(max_length=150, choices=roles, default=None)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
