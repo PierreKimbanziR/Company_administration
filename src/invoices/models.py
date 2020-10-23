@@ -8,11 +8,11 @@ class Invoice(models.Model):
     invoice_types = [("In", "In"), ("Out", "Out")]
 
     invoice_number = models.IntegerField()
-    contact_idd = models.IntegerField()
+    contact_id = models.IntegerField()
     company_id = models.IntegerField()
     description = models.CharField(max_length=150)
     amount = models.IntegerField()
     type = models.CharField(max_length=150,  choices=invoice_types)
 
     def __str__(self):
-        return  self.invoice_number
+        return  str(self.invoice_number)
