@@ -5,7 +5,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class UserCreation(AbstractUser):
-    user_id = models
+
     username = models.CharField(max_length=150, blank=False, unique=True)
     first_name= models.CharField(max_length=150, blank=False)
     last_name= models.CharField(max_length=150, blank=False)
