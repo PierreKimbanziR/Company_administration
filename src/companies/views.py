@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 
 from .forms import AddCompanyForm
+from .models import Company
 
 def add_company(request):
 
@@ -17,6 +18,20 @@ def add_company(request):
 
     context = {"form": form}
     return render(request, "companies/add_company.html", context)
+
+
+def get_companies(request):
+    companies = Company()
+    data = companies.get_ten_companies()
+
+    context ={"data":data}
+
+    return render(request, "companies/show_companies.html", context)
+
+
+
+
+
 
 def home_view(request):
 
