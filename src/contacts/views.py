@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import AddContactForm
-
+from .models import Contact
 
 def add_contact(request):
 
@@ -15,6 +15,17 @@ def add_contact(request):
     context={"form":form}
 
     return render(request, "contacts/add_contact.html", context)
+
+def get_contacts(request):
+
+    contacts_datas = Contact().get_contacts()
+
+    context ={
+        'contacts_datas':contacts_datas
+    }
+
+    return render(request, 'contacts/show_contacts.html', context)
+
 
 
 

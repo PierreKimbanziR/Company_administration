@@ -6,11 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    {% for n, c, v, r in companies_data  %}
-        <h2>{{n}}</h2>
-        <p>{{c}}</p>
-        <p>{{v}}</p>
-        <p>{{r}}</p>
+    {% for n, ids, desc, amo, types, createdat in invoices_datas  %}
+        <h2>{{n}} {{ids}}</h2>
+        <p>{{desc}}</p>
+        <p>{{amo}}</p>
+        <p>{{types}}</p>
+        <p>{{createdat}}</p>
     {% endfor %}
 </body>
 </html>

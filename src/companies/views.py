@@ -22,9 +22,8 @@ def add_company(request):
 
 def get_companies(request):
     companies = Company()
-    data = companies.get_ten_companies()
-
-    context ={"data":data}
+    companies_data = companies.get_companies()
+    context ={"companies_data":companies_data}
 
     return render(request, "companies/show_companies.html", context)
 

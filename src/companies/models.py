@@ -18,5 +18,16 @@ class Company(models.Model):
     def __str__(self):
         return self.Name
 
-    def get_ten_companies(self):
-        return Company.objects.all()
+    def get_companies(self):
+        name = []
+        country =[]
+        vat =[]
+        role =[]
+        for company in Company.objects.all().order_by('Name'):
+            name.append(company.Name)
+            country.append(company.Country)
+            vat.append(company.Vat_Number)
+            role.append(company.Role)
+        attribute_list = zip(name,country,vat,role)
+
+        return attribute_list

@@ -6,11 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    {% for n, c, v, r in companies_data  %}
-        <h2>{{n}}</h2>
-        <p>{{c}}</p>
-        <p>{{v}}</p>
-        <p>{{r}}</p>
+    {% for ln, fn, wa, tel, mail, createdat in contacts_datas  %}
+        <h2>{{ln}} {{fn}}</h2>
+        <p>{{wa}}</p>
+        <p>{{tel}}</p>
+        <p>{{mail}}</p>
+        <p>{{createdat}}</p>
     {% endfor %}
 </body>
 </html>

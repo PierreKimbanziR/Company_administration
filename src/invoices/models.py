@@ -15,6 +15,25 @@ class Invoice(models.Model):
     description = models.CharField(max_length=150)
     amount = models.IntegerField()
     type = models.CharField(max_length=150,  choices=invoice_types)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return  str(self.invoice_number)
+    
+    def get_invoices(self):
+        numbers = []
+        ids = []
+        descriptions =[]
+        amounts =[]
+        types = []
+        timestamps =[]
+
+        for invoice in Invoice.objects.all().order_by('-created_at'):
+            numbers.append(invoice.invoice_number)
+            ids.append(invoice.company_id)
+            descriptions.append(invoice.description)
+            amounts.append(invoice.amount)
+            types.append(invoice.type)
+            timestamps.append(invoice.created_at)
+        attributes_list =zip(numbers,ids, descriptions, amounts, types,timestamps)
+        return attributes_list

@@ -12,3 +12,21 @@ class Contact(models.Model):
 
     def __str__(self):
         return (f'{self.first_name}  {self.last_name} ')
+    
+    def get_contacts(self):
+        cfirst_name = []
+        clast_name = []
+        cworkingat =[]
+        ctelephone =[]
+        cemail =[]
+        ccreatedat=[]
+
+        for contact in Contact.objects.all().order_by('last_name'):
+            cfirst_name.append(contact.first_name)
+            clast_name.append(contact.last_name)
+            cworkingat.append(contact.working_at)
+            ctelephone.append(contact.telephone)
+            cemail.append(contact.email)
+            ccreatedat.append(contact.created_at)
+        attribute_list = zip(clast_name, cfirst_name, cworkingat, ctelephone, cemail, ccreatedat)
+        return attribute_list
