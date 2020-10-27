@@ -37,3 +37,4 @@ class Invoice(models.Model):
             timestamps.append(invoice.created_at)
         attributes_list =zip(numbers,ids, descriptions, amounts, types,timestamps)
         return attributes_list
+

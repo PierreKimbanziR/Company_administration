@@ -19,6 +19,7 @@ from companies.urls import urlpatterns as companies_urls
 from contacts.urls import urlpatterns as contacts_urls
 from invoices.urls import urlpatterns as invoices_urls
 from users.urls import urlpatterns as users_urls
+from .views import test
 
 
 
@@ -27,5 +28,7 @@ urlpatterns = [
     path('companies/', include(companies_urls)),
     path('contacts/', include(contacts_urls)),
     path('invoices/', include(invoices_urls)),
-    path('', include(users_urls))
+    path('', include(users_urls)),
+    path('test/', test, name="test")
 ]
+

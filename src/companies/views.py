@@ -27,7 +27,8 @@ def get_companies(request):
 
     return render(request, "companies/show_companies.html", context)
 
-
+def test(request):
+    return render(request, "companies/base.html")
 
 
 
