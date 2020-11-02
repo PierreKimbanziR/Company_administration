@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'companies',
     'invoices',
     'users',
-    'contacts'
+    'contacts',
+    'crispy_forms',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -123,4 +125,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 AUTH_USER_MODEL= 'users.UserCreation'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

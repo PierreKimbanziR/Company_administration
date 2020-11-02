@@ -1,27 +1,68 @@
 from django.shortcuts import render, redirect
 from .forms import AddContactForm
 from .models import Contact
+from django.views.generic. edit import CreateView
+from src.mixins import  AjaxFormMixin
+from django.urls import reverse_lazy, reverse
 
-def add_contact(request):
 
-    if request.method == "POST":
-        form = AddContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('company-home')
-    else:
-        form = AddContactForm()
 
-    context={"form":form}
+# def add_contact(request):
+#     if request.method == "POST":
+#         form = AddContactForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('company-home')
+#     else:
+#         form = AddContactForm()
 
-    return render(request, "contacts/add_contact.html", context)
+#     context = {
+#         "form" : form
+#     }
+#     return render(request, 'contacts/add_contact.html', context)
+
+class AddContact(AjaxFormMixin, CreateView):
+
+    template_name='contacts/show_contacts.html'
+    model = Contact
+    fields = ["first_name", "last_name", "working_at", "telephone", "email"]
+    contacts_datas = Contact().get_contacts()
+    success_url = reverse_lazy('company-home')
+
+    labels  = {
+            "first_name" : "First Name",
+            "last_name" : "Last Name",
+            "working_at": "Working at",
+            "telephone" : "Telephone Number",
+            "email" : "Email adress"
+            }
+    def  get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["contacts_datas"] = self.contacts_datas
+        return context
+
+
+
+
+
+
+
+
 
 def get_contacts(request):
 
-    contacts_datas = Contact().get_contacts()
+    # if request.method == "POST":
+    #     form = AddContactForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('company-home')
+    # else:
+    #     form = AddContactForm()
 
+    
     context ={
-        'contacts_datas':contacts_datas
+        'contacts_datas':contacts_datas,
+        # "form":form
     }
 
     return render(request, 'contacts/show_contacts.html', context)
