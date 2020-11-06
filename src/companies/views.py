@@ -5,6 +5,10 @@ from django.shortcuts import render, redirect
 
 from .forms import AddCompanyForm
 from .models import Company
+from django.views.generic. edit import CreateView
+from src.mixins import  AjaxFormMixin
+from django.urls import reverse_lazy, reverse
+
 
 def add_company(request):
 
@@ -20,17 +24,27 @@ def add_company(request):
     return render(request, "companies/add_company.html", context)
 
 
-def get_companies(request):
-    companies = Company()
-    companies_data = companies.get_companies()
-    context ={"companies_data":companies_data}
-
-    return render(request, "companies/show_companies.html", context)
 
 def test(request):
     return render(request, "companies/base.html")
 
+class AddCompany(AjaxFormMixin, CreateView):
+    template_name = 'companies/show_companies.html'
+    model = Company
+    fields =["Name", "Country", "Vat_Number", "Role"]
+    companies_datas = Company().get_companies()
+    success_url = reverse_lazy('company-home')
+    labels = {
+        "Name": "Company name",
+        "Country": "Company country",
+        "Vat_Number" :" Tva number",
+        "Role" :"Company role"
+    }
 
+    def  get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["companies_data"] = self.companies_datas
+        return context
 
 
 def home_view(request):

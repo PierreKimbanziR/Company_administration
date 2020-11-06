@@ -16,9 +16,9 @@ class Contact(models.Model):
     def get_contacts(self):
         cfirst_name = []
         clast_name = []
-        cworkingat =[]
-        ctelephone =[]
-        cemail =[]
+        cworkingat = []
+        ctelephone = []
+        cemail = []
         ccreatedat=[]
 
         for contact in Contact.objects.all().order_by('last_name'):

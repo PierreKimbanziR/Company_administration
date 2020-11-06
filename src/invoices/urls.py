@@ -1,7 +1,5 @@
 from django.urls import path
-from .views import add_invoice, get_invoices
+from .views import AddInvoice
 
 urlpatterns = [
-    path('add-invoice', add_invoice, name='add-invoice' ),
-    path('show-invoices', get_invoices, name='show-invoices')
-]
+   path('show-invoices/', AddInvoice.as_view(), name="show-invoices")]
