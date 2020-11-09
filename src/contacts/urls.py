@@ -1,9 +1,8 @@
 from django.urls import path
-from .views import AddContact, ContactsList
-from companies.views import home_view
+from .views import AddContact
+
 
 
 urlpatterns =[
-    path('contacts/', AddContact.as_view(), name='show-contacts'),
-    path('', ContactsList.as_view(), name='list')
+    path('show-contacts/', AddContact.as_view(), name='show-contacts')
 ]

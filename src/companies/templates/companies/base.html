@@ -39,12 +39,11 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
+              <a class="nav-link" href= "{% url 'site-homepage' %}">Home
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href= '{% url 'show-companies' %}'> Companies</a>
+              <a class="nav-link" href= "{% url 'show-companies' %}"> Companies</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href=" {% url 'show-invoices' %} ">Invoices</a>
@@ -62,7 +61,7 @@
 {%  block content %}
 {% endblock %}
     <!-- Footer -->
-<footer class="page-footer font-small blue fixed-bottom">
+<footer class="page-footer font-small blue  ">
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2020 Copyright:

@@ -1,5 +1,5 @@
 
-{% extends 'src/base.html' %}
+{% extends 'companies/base.html' %}
 {% load widget_tweaks %}
 {% block content%}
 {% include 'contacts/datatableslinks.html' %}
@@ -144,7 +144,7 @@
   <table id="dt-basic-checkbox" class="table" cellspacing="0" width="75%">
     <thead>
       <tr>
-      <th></th>
+      <th class="th-sm">Id</th>
         <th class="th-sm">Name
 
         </th>
@@ -163,22 +163,20 @@
       </tr>
     </thead>
     <tbody>
-    {% for ln, fn, wa, tel, mail, createdat in contacts_datas  %}
+      {% for contact in contacts %}
       <tr>
-      <td><div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="tableDefaultCheck1">
-        </div></td>
-        <td>{{ln}}</td>
-        <td>{{fn}}</td>
-        <td>{{wa}}</td>
-        <td>{{tel}}</td>
-        <td>{{mail}}</td>
-        <td>{{createdat}}</td>
+        <th scope="row">{{contact.id}}</th>
+        <td>{{contact.last_name}}</td>
+        <td>{{contact.first_name}}</td>
+        <td>{{contact.telephone}}</td>
+        <td>{{contact.working_at}}</td>
+        <td>{{contact.email}}</td>
+        <td>{{contact.created_at}}</td>
       </tr>
       {% endfor %}
-    </tbody>
     <tfoot>
        <tr>
+        <th class="th-sm">Id</th>
         <th class="th-sm">Name
 
         </th>

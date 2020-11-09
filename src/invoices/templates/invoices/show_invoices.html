@@ -1,5 +1,5 @@
 
-{% extends 'src/base.html' %}
+{% extends 'companies/base.html' %}
 {% load widget_tweaks %}
 {% block content%}
 
@@ -17,7 +17,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Add new contact</h4>
+            <h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Add new invoice</h4>
             <button type="button" class="close text-primary" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -145,6 +145,7 @@
   <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
+        <th class="th-sm">Id</th>
         <th class="th-sm">Invoice Number
 
         </th>
@@ -165,19 +166,21 @@
       </tr>
     </thead>
     <tbody>
-{% for n, ids, desc, amo, types, createdat in invoices_datas  %}
-<tr>
-        <td>{{n}}</td>
-        <td>{{ids}}</td>
-        <td>{{desc}}</td>
-        <td>{{amo}}</td>
-        <td>{{types}}</td>
-        <td>{{createdat}}</td>
+      {% for invoice in invoices %}
+      <tr>
+        <th scope="row">{{invoice.id}}</th>
+          <th>{{invoice.invoice_number}}</th>
+        <td>{{invoice.company_id}}</td>
+        <td>{{invoice.contact_id}}</td>
+        <td>{{invoice.amount}}</td>
+        <td>{{invoice.type}}</td>
+        <td>{{invoice.created_at}}</td>
       </tr>
       {% endfor %}
     </tbody>
     <tfoot>
        <tr>
+        <th class="th-sm">Id</th>
         <th class="th-sm">Invoice Number
 
         </th>

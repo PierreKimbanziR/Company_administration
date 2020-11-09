@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from .forms import AddInvoiceForm
 from .models import Invoice
 from django.views.generic. edit import CreateView
-from django.views.generic.dates import ArchiveIndexView
+from django.views.generic.list import ListView
 from src.mixins import  AjaxFormMixin
 from django.urls import reverse_lazy, reverse
 
@@ -22,14 +22,10 @@ class AddInvoice(AjaxFormMixin, CreateView):
         'amount':'Amount',
         'type':'Type'
         }
-    success_url = reverse_lazy('company-home')
+    success_url = reverse_lazy('show-invoices')
     invoices_datas = Invoice().get_invoices()
 
     def  get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["invoices_datas"] = self.invoices_datas
+        context["invoices"] = Invoice.objects.all()
         return context
-    
-class InvoicesList(ArchiveIndexView):
-    model = Invoice
-    date_field = "created_at"

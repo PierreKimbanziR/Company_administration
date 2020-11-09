@@ -1,4 +1,4 @@
-{% extends 'src/base.html' %}
+{% extends 'companies/base.html' %}
 {% load widget_tweaks %}
 
 {% block content %}
@@ -145,6 +145,7 @@
   <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
+        <th class="th-sm">ID</th>
         <th class="th-sm">Company Name
 
         </th>
@@ -161,17 +162,20 @@
       </tr>
     </thead>
     <tbody>
-     {% for n, c, v, r in companies_data  %}
-      <tr>
-        <td>{{n}}</td>
-        <td>{{c}}</td>
-        <td>{{v}}</td>
-        <td>{{r}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
+      {% for company in companies %}
+        <tr>
+          <th scope="row">{{company.id}}</th>
+          <td>{{company.Name}}</td>
+          <td>{{company.Country}}</td>
+          <td>{{company.Vat_Number}}</td>
+          <td>{{company.Role}}</td>
+        </tr>
+        {% endfor %}
+        
+      </tbody>
     <tfoot>
        <tr>
+        <th class="th-sm">ID</th>
         <th class="th-sm">Company Name
 
         </th>
