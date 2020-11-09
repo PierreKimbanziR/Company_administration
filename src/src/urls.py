@@ -29,6 +29,6 @@ urlpatterns = [
     path('contacts/', include(contacts_urls)),
     path('invoices/', include(invoices_urls)),
     path('', include(users_urls)),
-    path('test/', test, name="test")
+    path('test/', test, name="test"),
 ]
 

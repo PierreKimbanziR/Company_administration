@@ -1,0 +1,46 @@
+
+{% block content %}
+
+<div class="container justify-content-center">
+<div class="w-responsive text-center mx-auto p-3 mt-2">
+<table id="tablePreview" class="table table-hover ">
+<h2 class="pb-3">The last five registered invoices</h2>
+<!--Table head-->
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Invoice number</th>
+      <th>Company</th>
+      <th>Contact</th>
+      <th>Amount</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <!--Table head-->
+  <!--Table body-->
+  <tbody>
+  {% for invoice in last_invoices %}
+    <tr>
+      <th scope="row">{{invoice.id}}</th>
+        <th>{{invoice.invoice_number}}</th>
+      <td>{{invoice.company_id}}</td>
+      <td>{{invoice.contact_id}}</td>
+      <td>{{invoice.amount}}</td>
+      <td>{{invoice.type}}</td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+  <!--Table body-->
+</table>
+</div>
+
+</div>
+
+<!--Table-->
+
+<!--Table-->
+{% endblock content %}
+
+
+

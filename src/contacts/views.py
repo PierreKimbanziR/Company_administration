@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from .forms import AddContactForm
 from .models import Contact
 from django.views.generic. edit import CreateView
+from django.views.generic.dates import ArchiveIndexView
 from src.mixins import  AjaxFormMixin
 from django.urls import reverse_lazy, reverse
+
 
 
 
@@ -42,31 +44,12 @@ class AddContact(AjaxFormMixin, CreateView):
         return context
 
 
-
-
-
-
-
-
-
-def get_contacts(request):
-
-    # if request.method == "POST":
-    #     form = AddContactForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('company-home')
-    # else:
-    #     form = AddContactForm()
-
+class ContactsList(ArchiveIndexView):
     
-    context ={
-        'contacts_datas':contacts_datas,
-        # "form":form
-    }
-
-    return render(request, 'contacts/show_contacts.html', context)
-
+    model = Contact
+    paginate_by = 5
+    date_field = "created_at"
+    context_object_name = "last_contacts"
 
 
 

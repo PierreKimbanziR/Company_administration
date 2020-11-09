@@ -1,0 +1,43 @@
+{% block content %}
+
+<div class="container justify-content-center">
+<div class="w-responsive text-center mx-auto p-3 mt-2">
+<table id="tablePreview" class="table table-hover ">
+<h2 class="pb-3">The last five registered companies</h2>
+<!--Table head-->
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Company name</th>
+      <th>Country </th>
+      <th>Tva number</th>
+      <th>Company role</th>
+    </tr>
+  </thead>
+  <!--Table head-->
+  <!--Table body-->
+  <tbody>
+  {% for company in object_list %}
+    <tr>
+      <th scope="row">{{company.id}}</th>
+      <td>{{company.Name}}</td>
+      <td>{{company.Country}}</td>
+      <td>{{company.Vat_Number}}</td>
+      <td>{{company.Role}}</td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+  <!--Table body-->
+</table>
+</div>
+
+</div>
+
+<!--Table-->
+
+<!--Table-->
+{% endblock content %}
+
+
+

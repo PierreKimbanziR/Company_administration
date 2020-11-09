@@ -6,8 +6,10 @@ from django.shortcuts import render, redirect
 from .forms import AddCompanyForm
 from .models import Company
 from django.views.generic. edit import CreateView
+from django.views.generic.dates import ArchiveIndexView
 from src.mixins import  AjaxFormMixin
 from django.urls import reverse_lazy, reverse
+
 
 
 def add_company(request):
@@ -47,6 +49,12 @@ class AddCompany(AjaxFormMixin, CreateView):
         return context
 
 
+
 def home_view(request):
 
     return render(request, "companies/home.html")
+
+class CompaniesList(ArchiveIndexView):
+    model = Company
+    date_field = "created_at"
+    context_object_name = "last_companies"

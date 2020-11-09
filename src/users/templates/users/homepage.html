@@ -1,0 +1,122 @@
+{% extends 'companies/base.html' %}
+{% block content %}
+
+
+
+<div class="container justify-content-center">
+<div class="w-responsive text-center mx-auto p-3 mt-2">
+<table id="tablePreview" class="table table-hover ">
+<h2 class="pb-3">The last five registered companies</h2>
+<!--Table head-->
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Company name</th>
+      <th>Country </th>
+      <th>Tva number</th>
+      <th>Company role</th>
+    </tr>
+  </thead>
+  <!--Table head-->
+  <!--Table body-->
+  <tbody>
+  {% for company in last_companies %}
+    <tr>
+      <th scope="row">{{company.id}}</th>
+      <td>{{company.Name}}</td>
+      <td>{{company.Country}}</td>
+      <td>{{company.Vat_Number}}</td>
+      <td>{{company.Role}}</td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+  <!--Table body-->
+</table>
+</div>
+
+</div>
+
+<div class="container justify-content-center">
+<div class="w-responsive text-center mx-auto p-3 mt-2">
+<table id="tablePreview" class="table table-hover ">
+<h2 class="pb-3">The last five registered invoices</h2>
+<!--Table head-->
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Invoice number</th>
+      <th>Company</th>
+      <th>Contact</th>
+      <th>Amount</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <!--Table head-->
+  <!--Table body-->
+  <tbody>
+  {% for invoice in last_invoices %}
+    <tr>
+      <th scope="row">{{invoice.id}}</th>
+        <th>{{invoice.invoice_number}}</th>
+      <td>{{invoice.company_id}}</td>
+      <td>{{invoice.contact_id}}</td>
+      <td>{{invoice.amount}}</td>
+      <td>{{invoice.type}}</td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+  <!--Table body-->
+</table>
+</div>
+
+</div>
+
+<div class="container justify-content-center pb-4 ">
+<div class="w-responsive text-center mx-auto p-3 mt-2">
+<table id="tablePreview" class="table table-hover ">
+<h2 class="pb-3">The last five registered contacts</h2>
+<!--Table head-->
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Lastname</th>
+      <th>Firstname</th> </th>
+      <th>Phone number</th>
+      <th>Working at</th>
+      <th>Email adress</th>
+    </tr>
+  </thead>
+  <!--Table head-->
+  <!--Table body-->
+  <tbody>
+  {% for contact in last_contacts %}
+    <tr>
+      <th scope="row">{{contact.id}}</th>
+      <td>{{contact.last_name}}</td>
+      <td>{{contact.first_name}}</td>
+      <td>{{contact.telephone}}</td>
+      <td>{{contact.working_at}}</td>
+      <td>{{contact.email}}</td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+  <!--Table body-->
+</table>
+</div>
+
+</div>
+
+
+
+<!--Table-->
+
+<!--Table-->
+
+
+
+
+
+{% endblock content %}
