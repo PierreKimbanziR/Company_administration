@@ -2,7 +2,6 @@
 {% extends 'companies/base.html' %}
 {% load widget_tweaks %}
 {% block content%}
-{% include 'contacts/datatableslinks.html' %}
     <div class="wrapper-editor">
 
   <div class="block my-4">
@@ -11,7 +10,7 @@
     </div>
   </div>
 
-  <div class="row d-flex justify-content-center modalWrapper">
+  <div class="row d-flex justify-content-center modalWrapper" id="modalToggle">
     <div class="modal fade addNewInputs" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="modalAdd"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -141,7 +140,7 @@
     </div>
   </div>
 
-  <table id="dt-basic-checkbox" class="table" cellspacing="0" width="75%">
+  <table id="dtBasicExample" class="table" cellspacing="0" width="75%">
     <thead>
       <tr>
       <th class="th-sm">Id</th>
@@ -203,14 +202,10 @@
 
 
 <script>
-window.addEventListener("load", function(){
-  $(document).ready(function () {
-$('#dt-basic-checkbox').mdbEditor({
-modalEditor: true
+  $('#dtBasicExample').mdbEditor({
+mdbEditor: true
 });
 $('.dataTables_length').addClass('bs-select');
-})
-});
 </script>
 
 
@@ -249,7 +244,7 @@ $.ajaxSetup({
     }
 });
 $(document).ready(function(){
-    var $modal = $('#modalAdd')
+    var $modal = $('modal')
     var $myForm = $('.my-ajax-form')
     $myForm.submit(function(event){
         event.preventDefault()

@@ -25,7 +25,7 @@ from django.urls import reverse_lazy, reverse
 
 class AddContact(AjaxFormMixin, CreateView):
 
-    template_name='contacts/show_contacts.html'
+    template_name='contacts/tables.html'
     model = Contact
     fields = ["first_name", "last_name", "working_at", "telephone", "email"]
     success_url = reverse_lazy('show-contacts')

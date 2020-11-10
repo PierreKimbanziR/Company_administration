@@ -1,152 +1,96 @@
-{% extends "companies/base.html" %}
+
+{% extends 'companies/base.html' %}
 {% load widget_tweaks %}
-{% block content %}
-<!-- Editable table -->
-<div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
-  <div class="card-body">
-    <div id="table" class="table-editable">
-      <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
-            class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
-      <table class="table table-bordered table-responsive-md table-striped text-center">
-       <thead>
-      <tr>
-        <th class="th-sm">Name
+{% load static %}
+{% block css %}
+  <!-- MDBootstrap Datatables  -->
+  <!-- MDBootstrap Datatables  -->
+<link href="{% static 'css/addons/datatables.min.css'%}" rel="stylesheet">
+<link href= "{% static 'css/addons/datatables2.min.css' %} " rel="stylesheet">
+<link href= "{% static 'css/addons/datatables-select2.min.css' %} " rel="stylesheet">
+{% endblock css %}
+{% block javascript %}
+  <!-- MDBootstrap Datatables  -->
+  <!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="{% static 'js/addons/datatables.min.js' %}"></script>
+<script type="text/javascript" src= "{% static 'js/addons/datatables2.min.js' %}"></script>
+<script type="text/javascript" src= "{% static 'js/addons/datatables-select2.min.js' %}"></script>
 
-        </th>
-        <th class="th-sm">First Name
-
-        </th>
-        <th class="th-sm">Company
-
-        </th>
-        <th class="th-sm">Telephone
-
-        </th>
-        <th class="th-sm">Email adress</th>
-        <th class="th-sm"> Created At</th>
-        <th class="th-sm">Modify</th>
-
-      </tr>
-    </thead>
-        <tbody>
-        {% for ln, fn, wa, tel, mail, createdat in contacts_datas  %}
-          <tr>
-          <form action="" method="post" >
-          {% csrf_token %}
-          {% for field in form.visible_fields %}
-            {% render_field field class="form-control" placeholder=field.label%}
-           <td class="pt-3-half" contenteditable="true">{{ln}}</td>
-            <td class="pt-3-half" contenteditable="true">{{fn}}</td>
-            <td class="pt-3-half" contenteditable="true">{{wa}}<</td>
-            <td class="pt-3-half" contenteditable="true">{{tel}}</td>
-            <td class="pt-3-half" contenteditable="true">{{mail}}</td>
-
-            <td class="pt-3-half" contenteditable="true">{{createdat}}</td>
-            <td>
-            <button type="button" class="btn btn-success btn-rounded btn-sm my-0">Save</button>
-            </span>
-              <span class="table-remove"><button type="button"
-                  class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                
-            </td>
-            </form>
-           
-          </tr>
-          {% endfor %}
-          <!-- This is our clonable table line -->
-        </tbody>
-      </table>
-    </div>
-  </div>
+{% endblock javascript %}
+{% block content%}
+<div class="d-flex align-items-center justify-content-center mt-4 mb-3">
+<h1> Registered Contacts</h1>
 </div>
-<!-- Editable table -->
 
-<script>const $tableID = $('#table');
- const $BTN = $('#export-btn');
- const $EXPORT = $('#export');
+<div class=" container justify-content-center mb-3 mt-3 ">
 
- const newTr = `
-<tr class="hide">
-  <td class="pt-3-half" contenteditable="true">Example</td>
-  <td class="pt-3-half" contenteditable="true">Example</td>
-  <td class="pt-3-half" contenteditable="true">Example</td>
-  <td class="pt-3-half" contenteditable="true">Example</td>
-  <td class="pt-3-half" contenteditable="true">Example</td>
-  <td class="pt-3-half">
-    <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up" aria-hidden="true"></i></a></span>
-    <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down" aria-hidden="true"></i></a></span>
-  </td>
-  <td>
-    <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light">Remove</button></span>
-  </td>
-</tr>`;
+<table id="dt" class="table mr-0 ml-4 table-responsive-md border-bottom  border-top example z-depth-1">
+  <thead>
+    <tr>
+        <th >Id</th>
+        <th class='th-sm'>Name</th>
+        <th class='th-sm'>First Name</th>
+        <th>Company</th>
+        <th>Telephone</th>
+        <th class='th-sm'>Email adress</th>
+        <th class='th-sm'>Registration date</th>
+</tr>
+  </thead>
+  <tbody>
+    {% for contact in contacts %}
+      <tr>
+        <th>{{contact.id}}</th>
+        <td>{{contact.last_name}}</td>
+        <td>{{contact.first_name}}</td>
+        <td>{{contact.working_at}}</td>
+        <td>{{contact.telephone}}</td>
+        <td>{{contact.email}}</td>
+        <td>{{contact.created_at}}</td>
+      </tr>
+      {% endfor %}
 
- $('.table-add').on('click', 'i', () => {
+  </tbody>
+  <tfoot>
+    <tr>
+      <th class="th-sm">Id</th>
+      <th class="th-sm">Name</th>
+      <th class="th-sm">First Name</th>
+      <th class="th-sm">Company</th>
+      <th class="th-sm">Telephone</th>
+      <th class="th-sm">Email adress</th>
+      <th class="th-sm"> Created At</th>
 
-   const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
+      </th>
+    </tr>
+  </tfoot>
+</table>
+</div>
 
-   if ($tableID.find('tbody tr').length === 0) {
 
-     $('tbody').append(newTr);
-   }
 
-   $tableID.find('table').append($clone);
- });
+<script>
+$(document).ready(function () {
+  $('#dt').dataTable({
 
- $tableID.on('click', '.table-remove', function () {
+    columnDefs: [{
+      orderable: false,
+      className: 'select-checkbox',
+      targets: 0
+    }],
+    select: {
+      style: 'multi',
+      selector: 'td:first-child'
+    }
+  });
+});
+$(document).ready(function () {
+  $('#dt').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+});
+$(document).ready(function () {
+$('#dt').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
+</script>
 
-   $(this).parents('tr').detach();
- });
-
- $tableID.on('click', '.table-up', function () {
-
-   const $row = $(this).parents('tr');
-
-   if ($row.index() === 0) {
-     return;
-   }
-
-   $row.prev().before($row.get(0));
- });
-
- $tableID.on('click', '.table-down', function () {
-
-   const $row = $(this).parents('tr');
-   $row.next().after($row.get(0));
- });
-
- // A few jQuery helpers for exporting only
- jQuery.fn.pop = [].pop;
- jQuery.fn.shift = [].shift;
-
- $BTN.on('click', () => {
-
-   const $rows = $tableID.find('tr:not(:hidden)');
-   const headers = [];
-   const data = [];
-
-   // Get the headers (add special header logic here)
-   $($rows.shift()).find('th:not(:empty)').each(function () {
-
-     headers.push($(this).text().toLowerCase());
-   });
-
-   // Turn all existing rows into a loopable array
-   $rows.each(function () {
-     const $td = $(this).find('td');
-     const h = {};
-
-     // Use the headers from earlier to name our hash keys
-     headers.forEach((header, i) => {
-
-       h[header] = $td.eq(i).text();
-     });
-
-     data.push(h);
-   });
-
-   // Output the result
-   $EXPORT.text(JSON.stringify(data));
- });</script>
-{% endblock content %}
+{% endblock %}
