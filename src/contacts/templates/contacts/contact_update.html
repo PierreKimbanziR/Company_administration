@@ -1,0 +1,28 @@
+{% extends 'companies/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<form class="text-center" action=""  method="post">
+        {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+        {% endfor %}
+        {% csrf_token %}
+        <div class="form-group mb-4">
+        {% for field in form.visible_fields %}
+        
+        <div class="col">
+        <label for="{{field.label}}">{{field.label}} : </label>
+            {% render_field field class="form-control"  placeholder=field.label %}
+             {% for error in field.errors %}
+      <span class="help-block">{{ error }}</span>
+      </div>
+    {% endfor %}
+        
+        </div>
+        {% endfor %}
+
+    <input type="submit" value="Submit" class="btn btn-primary">
+</form>
+
+
+{% endblock content %}
+
