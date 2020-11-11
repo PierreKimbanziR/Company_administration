@@ -1,0 +1,22 @@
+{% extends 'companies/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="card card-cascade wider">
+<div class="card-body card-body-cascade text-center">
+<div class="view view-cascade overlay">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+<h4 class="card-title"><strong>{{company.Name}} details :</strong></h4>
+<div>
+
+<p> <b>Location:</b>  {{company.country}}</p>
+<p> <b>TVA number :</b> {{company.Vat_Number}}</p>
+<p> <b>Relation :</b> {{company.Role}}</p></div>
+<p> <b>Registration date :</b> {{company.created_at}}</p></div>
+
+
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'companies/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="card card-cascade wider">
+<div class="card-body card-body-cascade text-center">
+<div class="view view-cascade overlay">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+<h4 class="card-title"><strong> Invoice n°{{contact.invoice_number}} details :</strong></h4>
+<div>
+
+<p> <b>Person of contact :</b>  {{invoice.contact_id}}</p>
+<p> <b>Company :</b> {{invoice.company_id}}</p>
+<p> <b>Description :</b> {{invoice.description}}</p>
+<p> <b>Amount :</b> {{invoice.amount}}</p>
+<p> <b>type :</b> {{invoice.type}}</p>
+<p> <b>Registration date :</b> {{invoice.created_at}}</p></div>
+
+</div>
+</div>
+{% endblock %}
