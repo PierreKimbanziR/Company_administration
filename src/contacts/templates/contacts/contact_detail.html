@@ -1,0 +1,21 @@
+{% extends 'companies/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="card card-cascade wider">
+<div class="card-body card-body-cascade text-center">
+<div class="view view-cascade overlay">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+<h4 class="card-title"><strong>{{contact.first_name}} {{contact.last_name}} details :</strong></h4>
+<h5 class="blue-text pb-2"><strong>Work at : {{contact.working_at}}</strong></h5>
+<div>
+
+<p> <b>Telephone number :</b>  {{contact.telephone}}</p>
+<p> <b>Email adress :</b> {{contact.email}}</p>
+<p> <b>Registration date :</b> {{contact.created_at}}</p></div>
+
+</div>
+</div>
+{% endblock %}

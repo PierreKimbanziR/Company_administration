@@ -48,7 +48,7 @@ class AddContact(AjaxFormMixin, CreateView):
 class ContactDetailView(DetailView):
     model = Contact
     template_name = "contacts/contact_detail.html"
-
+    fields = ["first_name", "last_name", "working_at", "telephone", "email", "created_at"]
 
 class ContactUpdateView(UpdateView):
     model = Contact
