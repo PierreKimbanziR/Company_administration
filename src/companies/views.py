@@ -33,10 +33,12 @@ class CompanyDetailView(DetailView):
     model = Company
     template_name = "companies/company_detail.html"
 
+
 class CompanyUpdateView(UpdateView):
     model = Company
-    template_name = "companies/company.html"
+    template_name = "companies/company_update.html"
+    fields =["Name", "Country", "Vat_Number", "Role"]
     def get_success_url(self):
-        return reverse_lazy('detail-company', kwargs={'pk': self.object.id})
+        return reverse_lazy('detail-company', kwargs={'pk': self.object.id} )
 
 

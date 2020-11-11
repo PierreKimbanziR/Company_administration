@@ -21,6 +21,16 @@
 <h1> Registered Companies</h1>
 </div>
 
+<div class="container">
+  <a href="{% url 'add-companies' %}">
+    <button type="button" class="btn btn-outline-default waves-effect">
+      Add a new company
+    </button>
+  </a>
+</div>
+
+
+
 <div class=" container justify-content-center mb-3 mt-3 ">
 
 <table id="dt" class="table mr-0 ml-4 table-responsive-md border-bottom  border-top example z-depth-1 mb-4">
@@ -31,6 +41,7 @@
       <th class="th-sm">Company Country</th>
       <th class="th-sm">VAT Number</th>
       <th class="th-sm">Company Role</th>
+      <th class="th-sm"></th>
     </tr>
   </thead>
   <tbody>
@@ -41,6 +52,19 @@
         <td>{{company.Country}}</td>
         <td>{{company.Vat_Number}}</td>
         <td>{{company.Role}}</td>
+        <td>
+          <span>
+            <a href="{% url 'detail-company' pk=company.id %}">
+              <i class="far fa-eye fa-lg"></i>
+            </a>
+            <a href="{% url 'update-company' pk=company.id %}">
+              <i class="far fa-edit fa-lg"></i>
+            </a>
+            <a href="">
+              <i class="far fa-trash-alt fa-lg"></i>
+            </a>
+          </span>
+        </td>
       </tr>
       {% endfor %}
     </tbody>
@@ -59,6 +83,7 @@
       <th class="th-sm">Company Role
 
       </th>
+      <th class="th-sm"></th>
 
     </tr>
  </tfoot>

@@ -21,6 +21,14 @@
 <div class="d-flex align-items-center justify-content-center mt-4 mb-3">
 <h1> Registered Contacts</h1>
 </div>
+<div class="container">
+  <a href="{% url 'add-contacts' %}">
+    <button type="button" class="btn btn-outline-default waves-effect">
+      Add a new contact
+    </button>
+  </a>
+</div>
+
 
 <div class=" container justify-content-center mb-3 mt-3 ">
 
@@ -34,6 +42,7 @@
         <th>Telephone</th>
         <th class='th-sm'>Email adress</th>
         <th class='th-sm'>Registration date</th>
+        <th class="th-sm">Actions</th>
 </tr>
   </thead>
   <tbody>
@@ -46,6 +55,19 @@
         <td>{{contact.telephone}}</td>
         <td>{{contact.email}}</td>
         <td>{{contact.created_at}}</td>
+        <td>
+          <span>
+            <a href="{% url 'detail-contact' pk=contact.id %}">
+              <i class="far fa-eye fa-lg"></i>
+            </a>
+            <a href="{% url 'update-contact' pk=contact.id %}">
+              <i class="far fa-edit fa-lg"></i>
+            </a>
+            <a href="">
+              <i class="far fa-trash-alt fa-lg"></i>
+            </a>
+          </span>
+        </td>
       </tr>
       {% endfor %}
 
@@ -59,6 +81,7 @@
       <th class="th-sm">Telephone</th>
       <th class="th-sm">Email adress</th>
       <th class="th-sm"> Created At</th>
+      <th class="th-sm">Actions</th>
 
       </th>
     </tr>
