@@ -4,27 +4,44 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from .forms import AddInvoiceForm
 from .models import Invoice
+from django.views.generic. edit import CreateView
+from django.views.generic.list import ListView
+from django.views.generic import UpdateView
+from django.views.generic.detail import DetailView
 
-def add_invoice(request):
+from src.mixins import  AjaxFormMixin
+from django.urls import reverse_lazy, reverse
 
-    if request.method == "POST":
-        form = AddInvoiceForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('company-home')
-    else :
-        form = AddInvoiceForm()
 
-    context ={"form":form}
+class AddInvoice(AjaxFormMixin, CreateView):
+    template_name ="invoices/add_invoice.html"
+    model = Invoice
+    fields = ['invoice_number', 'contact_id', 'company_id', 'description', 'amount', 'type']
+    labels = {
+        'invoice_number' : 'Invoice number',
+        'contact_id':'Contact Person',
+        'company_id': 'Company name',
+        'descriptions':'Invoice description',
+        'amount':'Amount',
+        'type':'Type'
+        }
+    success_url = reverse_lazy('show-invoices')
 
-    return render(request, 'invoices/add_invoice.html', context)
+class InvoiceListView(ListView):
+    model = Invoice
+    template_name = "invoices/invoice_list.html"
+    context_object_name = 'invoices'
 
-def get_invoices(request):
+class InvoiceUpdateView(UpdateView):
+    model = Invoice
+    template_name = "invoices/invoice_update.html"
+    def get_success_url(self):
+        return reverse_lazy('detail-invoice', kwargs={'pk': self.object.id})
 
-    invoices_datas = Invoice().get_invoices()
-    context = {
-        'invoices_datas': invoices_datas
-    }
 
-    return render(request, 'invoices/show_invoices.html', context)
+class InvoiceDetailView(DetailView):
+    model = Invoice
+    template_name = "invoices/invoice_detail.html"
+
+
 

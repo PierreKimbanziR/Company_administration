@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'companies',
     'invoices',
     'users',
-    'contacts'
+    'contacts',
+    'crispy_forms',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -58,7 +60,7 @@ ROOT_URLCONF = 'src.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,4 +125,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 AUTH_USER_MODEL= 'users.UserCreation'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

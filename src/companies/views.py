@@ -3,35 +3,40 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
 
-from .forms import AddCompanyForm
 from .models import Company
 
-def add_company(request):
+from django.views.generic. edit import CreateView
+from django.views.generic.list import ListView
+from django.views.generic import UpdateView
+from django.views.generic.detail import DetailView
 
-    if request.method == "POST":
-        form = AddCompanyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("company-home")
-    else:
-        form = AddCompanyForm()
+from src.mixins import  AjaxFormMixin
+from django.urls import reverse_lazy, reverse
 
-    context = {"form": form}
-    return render(request, "companies/add_company.html", context)
+class AddCompany(AjaxFormMixin, CreateView):
+    template_name = 'companies/add_company.html'
+    model = Company
+    fields =["Name", "Country", "Vat_Number", "Role"]
+    success_url = reverse_lazy('show-companies')
+    labels = {
+        "Name": "Company name",
+        "Country": "Company country",
+        "Vat_Number" :" Tva number",
+        "Role" :"Company role"
+    }
+
+class CompanyListView(ListView):
+    model = Company
+    context_object_name = "companies"
+
+class CompanyDetailView(DetailView):
+    model = Company
+    template_name = "companies/company_detail.html"
+
+class CompanyUpdateView(UpdateView):
+    model = Company
+    template_name = "companies/company.html"
+    def get_success_url(self):
+        return reverse_lazy('detail-company', kwargs={'pk': self.object.id})
 
 
-def get_companies(request):
-    companies = Company()
-    companies_data = companies.get_companies()
-    context ={"companies_data":companies_data}
-
-    return render(request, "companies/show_companies.html", context)
-
-
-
-
-
-
-def home_view(request):
-
-    return render(request, "companies/home.html")

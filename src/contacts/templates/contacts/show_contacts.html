@@ -1,17 +1,280 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% for ln, fn, wa, tel, mail, createdat in contacts_datas  %}
-        <h2>{{ln}} {{fn}}</h2>
-        <p>{{wa}}</p>
-        <p>{{tel}}</p>
-        <p>{{mail}}</p>
-        <p>{{createdat}}</p>
-    {% endfor %}
-</body>
-</html>
+
+{% extends 'companies/base.html' %}
+{% load widget_tweaks %}
+{% block content%}
+    <div class="wrapper-editor">
+
+  <div class="block my-4">
+    <div class="d-flex justify-content-center">
+      <p class="h5 text-primary createShowP">0 row selected</p>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center modalWrapper" id="modalToggle">
+    <div class="modal fade addNewInputs" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="modalAdd"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Add new contact</h4>
+            <button type="button" class="close text-primary" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+
+    <form action="."  method="post" class='my-ajax-form'  data-url='{{ request.build_absolute_uri|safe }}'>
+        {% csrf_token %}
+
+        {% for field in form.visible_fields %}
+
+         <div class="md-form mb-5">
+            {% render_field field class="form-control" placeholder=field.label%}
+
+             {% for error in field.errors %}
+      <span class="help-block">{{ error }}</span>
+
+      {% endfor %}
+            </div>
+        {% endfor %}
+
+          <div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
+            <button class="btn btn-outline-primary btn-block buttonAdd"   type="submit">Add Contact</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Close</button>
+              <i class="fas fa-paper-plane-o ml-1"></i>
+          </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="text-center">
+      <a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd">Add<i
+          class="fas fa-plus-square ml-1"></i></a>
+    </div>
+
+    <div class="modal fade modalEditClass" id="modalEdit" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold text-secondary ml-5">Edit form</h4>
+            <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="false">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+              <input type="text" id="formNameEdit" class="form-control validate">
+              <label data-error="wrong" data-success="right" for="formNameEdit">Name</label>
+            </div>
+
+            <div class="md-form mb-5">
+              <input type="text" id="formPositionEdit" class="form-control validate">
+              <label data-error="wrong" data-success="right" for="formPositionEdit">Position</label>
+            </div>
+
+            <div class="md-form mb-5">
+              <input type="text" id="formOfficeEdit" class="form-control validate">
+              <label data-error="wrong" data-success="right" for="formOfficeEdit">Office</label>
+            </div>
+
+            <div class="md-form mb-5">
+              <input type="text" id="formAgeEdit" class="form-control validate">
+              <label data-error="wrong" data-success="right" for="formAgeEdit">Age</label>
+            </div>
+
+            <div class="md-form mb-5">
+              <input type="text" id="formDateEdit" class="form-control datepicker">
+              <label data-error="wrong" data-success="right" for="formDateEdit">Date</label>
+            </div>
+
+            <div class="md-form mb-5">
+              <input type="text" id="formSalaryEdit" class="form-control validate">
+              <label data-error="wrong" data-success="right" for="formSalaryEdit">Salary</label>
+            </div>
+
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center editInsideWrapper">
+            <button class="btn btn-outline-secondary btn-block editInside" data-dismiss="modal">Edit
+              form
+              <i class="fas fa-paper-plane-o ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center buttonEditWrapper">
+      <button class="btn btn-info btn-rounded btn-sm buttonEdit" data-toggle="modal" data-target="#modalEdit"
+        >Edit<i class="fas fa-pencil-square-o ml-1"></i></a>
+    </div>
+
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDelete"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold ml-5 text-danger">Delete</h4>
+            <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+            <p class="text-center h4">Are you sure to delete selected row?</p>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center deleteButtonsWrapper">
+            <button type="button" class="btn btn-danger btnYesClass" id="btnYes" data-dismiss="modal">Yes</button>
+            <button type="button" class="btn btn-primary btnNoClass" id="btnNo" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-danger btn-sm btn-rounded buttonDelete" data-toggle="modal"  data-target="#modalDelete"
+        >Delete<i class="fas fa-times ml-1"></i></a>
+    </div>
+  </div>
+
+  <table id="dtBasicExample" class="table" cellspacing="0" width="75%">
+    <thead>
+      <tr>
+      <th class="th-sm">Id</th>
+        <th class="th-sm">Name
+
+        </th>
+        <th class="th-sm">First Name
+
+        </th>
+        <th class="th-sm">Company
+
+        </th>
+        <th class="th-sm">Telephone
+
+        </th>
+        <th class="th-sm">Email adress</th>
+        <th class="th-sm"> Created At</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for contact in contacts %}
+      <tr>
+        <th scope="row">{{contact.id}}</th>
+        <td>{{contact.last_name}}</td>
+        <td>{{contact.first_name}}</td>
+        <td>{{contact.telephone}}</td>
+        <td>{{contact.working_at}}</td>
+        <td>{{contact.email}}</td>
+        <td>{{contact.created_at}}</td>
+      </tr>
+      {% endfor %}
+    <tfoot>
+       <tr>
+        <th class="th-sm">Id</th>
+        <th class="th-sm">Name
+
+        </th>
+        <th class="th-sm">First Name
+
+        </th>
+        <th class="th-sm">Company
+
+        </th>
+        <th class="th-sm">Telephone
+
+        </th>
+        <th class="th-sm">Email adress
+        </th>
+        <th class="th-sm"> Created At
+        </th>
+
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"> </script>
+
+
+
+<script>
+  $('#dtBasicExample').mdbEditor({
+mdbEditor: true
+});
+$('.dataTables_length').addClass('bs-select');
+</script>
+
+
+
+
+
+<script>
+// using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+var csrftoken = getCookie('csrftoken');
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+$(document).ready(function(){
+    var $modal = $('modal')
+    var $myForm = $('.my-ajax-form')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+        return false
+;
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+        console.log(data)
+        console.log(textStatus)
+        console.log(jqXHR)
+        $myForm[0].reset()
+        $modal.modal('hide')
+        console.log('hide modal'); // reset form data
+            }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+        console.log(jqXHR)
+        console.log(textStatus)
+        console.log(errorThrown)
+    }
+})
+</script>
+{% endblock %}

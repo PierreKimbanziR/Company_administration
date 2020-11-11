@@ -1,0 +1,96 @@
+
+{% extends 'companies/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block css %}
+  <!-- MDBootstrap Datatables  -->
+  <!-- MDBootstrap Datatables  -->
+<link href="{% static 'css/addons/datatables.min.css'%}" rel="stylesheet">
+<link href= "{% static 'css/addons/datatables2.min.css' %} " rel="stylesheet">
+<link href= "{% static 'css/addons/datatables-select2.min.css' %} " rel="stylesheet">
+{% endblock css %}
+{% block javascript %}
+  <!-- MDBootstrap Datatables  -->
+  <!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="{% static 'js/addons/datatables.min.js' %}"></script>
+<script type="text/javascript" src= "{% static 'js/addons/datatables2.min.js' %}"></script>
+<script type="text/javascript" src= "{% static 'js/addons/datatables-select2.min.js' %}"></script>
+
+{% endblock javascript %}
+{% block content%}
+<div class="d-flex align-items-center justify-content-center mt-4 mb-3">
+<h1> Registered Contacts</h1>
+</div>
+
+<div class=" container justify-content-center mb-3 mt-3 ">
+
+<table id="dt" class="table mr-0 ml-4 table-responsive-md border-bottom  border-top example z-depth-1 " >
+  <thead>
+    <tr>
+        <th >Id</th>
+        <th class='th-sm'>Name</th>
+        <th class='th-sm'>First Name</th>
+        <th>Company</th>
+        <th>Telephone</th>
+        <th class='th-sm'>Email adress</th>
+        <th class='th-sm'>Registration date</th>
+</tr>
+  </thead>
+  <tbody>
+    {% for contact in contacts %}
+      <tr>
+        <th>{{contact.id}}</th>
+        <td>{{contact.last_name}}</td>
+        <td>{{contact.first_name}}</td>
+        <td>{{contact.working_at}}</td>
+        <td>{{contact.telephone}}</td>
+        <td>{{contact.email}}</td>
+        <td>{{contact.created_at}}</td>
+      </tr>
+      {% endfor %}
+
+  </tbody>
+  <tfoot>
+    <tr>
+      <th class="th-sm">Id</th>
+      <th class="th-sm">Name</th>
+      <th class="th-sm">First Name</th>
+      <th class="th-sm">Company</th>
+      <th class="th-sm">Telephone</th>
+      <th class="th-sm">Email adress</th>
+      <th class="th-sm"> Created At</th>
+
+      </th>
+    </tr>
+  </tfoot>
+</table>
+</div>
+
+
+
+<script>
+$(document).ready(function () {
+  $('#dt').dataTable({
+
+    columnDefs: [{
+      orderable: false,
+      className: 'select-checkbox',
+      targets: 0
+    }],
+    select: {
+      style: 'multi',
+      selector: 'td:first-child'
+    }
+  });
+});
+$(document).ready(function () {
+  $('#dt').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+});
+$(document).ready(function () {
+$('#dt').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
+</script>
+
+{% endblock %}
