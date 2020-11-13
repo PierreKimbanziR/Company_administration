@@ -9,6 +9,7 @@ from django.views.generic. edit import CreateView
 from django.views.generic.list import ListView
 from django.views.generic import UpdateView
 from django.views.generic.detail import DetailView
+from django.views.generic import DeleteView
 
 from src.mixins import  AjaxFormMixin
 from django.urls import reverse_lazy, reverse
@@ -33,10 +34,16 @@ class CompanyDetailView(DetailView):
     model = Company
     template_name = "companies/company_detail.html"
 
+
 class CompanyUpdateView(UpdateView):
     model = Company
-    template_name = "companies/company.html"
+    template_name = "companies/company_update.html"
+    fields =["Name", "Country", "Vat_Number", "Role"]
     def get_success_url(self):
-        return reverse_lazy('detail-company', kwargs={'pk': self.object.id})
+        return reverse_lazy('detail-company', kwargs={'pk': self.object.id} )
 
+class CompanyDeleteView(DeleteView):
+    model = Company
+    success_url = reverse_lazy('show-companies')
+    template_name = 'companies/company_list.html'
 

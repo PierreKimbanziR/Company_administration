@@ -1,23 +1,29 @@
 {% extends 'companies/base.html' %}
 {% load widget_tweaks %}
 {% block content %}
-<div class="card card-cascade wider">
-<div class="card-body card-body-cascade text-center">
-<div class="view view-cascade overlay">
-    <a href="#!">
-      <div class="mask rgba-white-slight"></div>
-    </a>
-  </div>
-<h4 class="card-title"><strong> Invoice n°{{contact.invoice_number}} details :</strong></h4>
-<div>
-
-<p> <b>Person of contact :</b>  {{invoice.contact_id}}</p>
-<p> <b>Company :</b> {{invoice.company_id}}</p>
-<p> <b>Description :</b> {{invoice.description}}</p>
-<p> <b>Amount :</b> {{invoice.amount}}</p>
-<p> <b>type :</b> {{invoice.type}}</p>
-<p> <b>Registration date :</b> {{invoice.created_at}}</p></div>
-
+<div class="row justify-content-center ">
+  <div class="card card-cascade wider">
+    <div class="card-body card-body-cascade ">
+    <div class="view view-cascade overlay">
+        <a href="#!">
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+    <h4 class="card-title mb-4"><strong> Invoice n° {{invoice.invoice_number}} details :</strong></h4>
+    <div>
+    <div class="text-center mb-3"><i class="fas fa-file-invoice fa-5x"></i></div>
+    <p> <b>Person of contact :</b>  {{invoice.contact_id}}</p>
+    <p> <b>Company :</b> {{invoice.company_id}}</p>
+    <p> <b>Description :</b> {{invoice.description}}</p>
+    <p> <b>Amount :</b> {{invoice.amount}}</p>
+    <p> <b>Type :</b> {{invoice.type}}</p>
+    <p> <b>Registration date :</b> {{invoice.created_at}}</p></div>
+    <div class="container col-12 text-center">
+      <a href="{% url 'show-invoices' %}">
+        <i class="fas fa-arrow-left fa-5x"></i>
+      </a>
+    </div>
+    </div>
 </div>
-</div>
+
 {% endblock %}

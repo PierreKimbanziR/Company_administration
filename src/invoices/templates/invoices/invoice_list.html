@@ -21,6 +21,15 @@
 <h1> Registered Invoices</h1>
 </div>
 
+<div class="container">
+  <a href="{% url 'add-invoices' %}">
+    <button type="button" class="btn btn-outline-default waves-effect">
+      Add a new invoice
+    </button>
+  </a>
+</div>
+
+
 <div class=" container justify-content-center mb-3 mt-3 ">
 
 <table id="dt" class="table mr-0 ml-4 table-responsive-md border-bottom  border-top example z-depth-1">
@@ -43,6 +52,7 @@
       </th>
       <th class="th-sm"> Created At
       </th>
+      <th class="th-sm">Actions</th>
  
     </tr>
   </thead>
@@ -56,6 +66,42 @@
       <td>{{invoice.amount}}</td>
       <td>{{invoice.type}}</td>
       <td>{{invoice.created_at}}</td>
+      <td>
+        <span>
+          <a href="{% url 'detail-invoice' pk=invoice.id %}">
+            <i class="far fa-eye fa-lg"></i>
+          </a>
+          <a href="{% url 'update-invoice' pk=invoice.id %}">
+            <i class="far fa-edit fa-lg"></i>
+          </a>
+          <a data-target="#basicExampleModal" data-toggle="modal">
+            <i class="far fa-trash-alt fa-lg"></i>
+          </a>
+          <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure ? </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                  <p> <b>Are you sure you want to delete the invoice n° {{invoice.invoice_number}} ?</b> </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                    <form method="post" action=" {% url 'delete-invoice' pk=invoice.id %}">
+                      {% csrf_token %}
+                      <Button class="btn btn-danger" type="submit" value="Confirm">Confirm</Button>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </span>
+      </td>
     </tr>
     {% endfor %}
   </tbody>
@@ -78,6 +124,7 @@
      </th>
      <th class="th-sm"> Created At
      </th>
+     <th class="th-sm">Actions</th>
 
    </tr>
  </tfoot>
