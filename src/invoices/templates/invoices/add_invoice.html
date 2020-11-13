@@ -1,7 +1,14 @@
 {% extends 'companies/base.html' %}
 {% load widget_tweaks %}
 {% block content %}
-<form class="text-center" action=""  method="post">
+
+<div class=" container d-flex justify-content-center">
+<div class="card w-50">
+<h5 class="card-header blue-gradient white-text text-center py-4">
+<strong>Register a new invoice</strong>
+</h5>
+<div  class="card-body  px-lg-5 pt-0">
+<form class="md-form" action=""  method="post">
         {% for hidden in form.hidden_fields %}
         {{ hidden }}
         {% endfor %}
@@ -10,8 +17,7 @@
         {% for field in form.visible_fields %}
         
         <div class="col">
-        <label for="{{field.label}}">{{field.label}} : </label>
-            {% render_field field class="form-control"  placeholder=field.label %}
+        {% render_field field class="form-control"  placeholder=field.label %}
              {% for error in field.errors %}
       <span class="help-block">{{ error }}</span>
       </div>
@@ -19,9 +25,22 @@
         
         </div>
         {% endfor %}
+<button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Register</button>
+<a href="{% url 'show-invoices' %}">
+    <button type="button" class="btn btn-outline-danger waves-effect btn-block z-depth-0 btn-rounded my-4 waves-effect">Cancel</button>
+</a>
 
-    <input type="submit" value="Submit" class="btn btn-primary">
+
+
+
+    
 </form>
+</div>
+
+</div>
+</div>
+
+
 
 
 {% endblock content %}
