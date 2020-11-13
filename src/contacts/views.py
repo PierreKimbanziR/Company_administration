@@ -5,6 +5,7 @@ from django.views.generic. edit import CreateView
 from django.views.generic.list import ListView
 from django.views.generic import UpdateView
 from django.views.generic.detail import DetailView
+from django.views.generic import DeleteView
 
 from src.mixins import  AjaxFormMixin
 
@@ -47,3 +48,9 @@ class ContactUpdateView(UpdateView):
             }
     def get_success_url(self):
         return reverse_lazy('detail-contact', kwargs={'pk': self.object.id})
+
+class ContactDeleteView(DeleteView):
+    model = Contact
+    template_name = "contact_list.html"
+    success_url = reverse_lazy('show-contacts')
+
