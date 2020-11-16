@@ -32,7 +32,7 @@
 
 </head>
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark indigo mb-4">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark mdb-color darken-3 mb-4">
         <a class="navbar-brand" href="#">PKR</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
           aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,22 +40,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item ">
               <a class="nav-link" href= "{% url 'site-homepage' %}">Home
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
               <a class="nav-link" href= "{% url 'show-companies' %}"> Companies</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
               <a class="nav-link" href=" {% url 'show-invoices' %} ">Invoices</a>
             </li>
-             <li class="nav-item">
+             <li class="nav-item ">
               <a class="nav-link" href=" {% url 'show-contacts' %} ">Contacts</a>
             </li>
           </ul>
           <span class="navbar-text white-text">
-            <a href="{% url 'logout' %}">Logout</a>
+            <a href="{% url 'logout' %}">Logout</a>  ||
+            <a href= "{% url 'admin:index' %}" >Admin</a>
           </span>
         </div>
       </nav>
@@ -63,7 +64,7 @@
 {%  block content %}
 {% endblock %}
     <!-- Footer -->
-<footer class="page-footer font-small blue fixed-bottom mt-4" >
+<footer class="page-footer font-small  mdb-color darken-1 fixed-bottom mt-4" >
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
       <a href="https://www.linkedin.com/in/pierre-kimbanzi-ruganda/"> Pierre Kimbanzi Ruganda</a>

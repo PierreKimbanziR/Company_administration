@@ -3,7 +3,9 @@ from __future__ import unicode_literals
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 from .forms import UserRegisterForm
 from django.contrib.auth.models import User
@@ -27,8 +29,10 @@ class RegisterView(FormView):
         return redirect('login')
 
 
-class HomepageListView(ListView):
+class HomepageListView(LoginRequiredMixin, ListView):
     
+    login_url = reverse_lazy('login')
+    redirect_field_name = 'redirect_to'
     template_name = "users/homepage.html"
     queryset = Company.objects.all().order_by('-created_at')[:5]
     context_object_name = "last_companies"
