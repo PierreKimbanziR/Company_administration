@@ -125,7 +125,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-AUTH_USER_MODEL= 'users.UserCreation'
+AUTH_USER_MODEL = 'users.User'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
