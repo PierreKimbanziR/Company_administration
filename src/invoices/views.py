@@ -33,7 +33,7 @@ class AddInvoice(SuccessMessageMixin,LoginRequiredMixin,AjaxFormMixin, CreateVie
         'type':'Type'
         }
     success_url = reverse_lazy('add-invoices')
-    success_message = "Invoices succesfully registered !"
+    success_message = "Invoice succesfully registered !"
 
 class InvoiceListView(LoginRequiredMixin,ListView):
     login_url = reverse_lazy('login')
@@ -46,8 +46,9 @@ class InvoiceUpdateView(SuccessMessageMixin,LoginRequiredMixin,UpdateView):
     login_url = reverse_lazy('login')
     redirect_field_name = 'redirect_to'
     model = Invoice
+    fields = ['invoice_number', 'contact_id', 'company_id', 'description', 'amount', 'type']
     template_name = "invoices/invoice_update.html"
-    success_message = "Invoices succesfully updated !"
+    success_message = "Invoice successfully updated !"
 
     def get_success_url(self):
         return reverse_lazy('detail-invoice', kwargs={'pk': self.object.id})

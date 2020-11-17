@@ -4,7 +4,7 @@
 
 <div class="row d-flex justify-content-center">
     {% if messages %}
-    <div class="alert alert-success w-responsive text-center w-25" role="alert">
+    <div class="alert alert-success w-responsive text-center w-25" role="alert" id="message_container">
         {% for message in messages %}
         <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
         {% endfor %}

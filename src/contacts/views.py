@@ -22,7 +22,7 @@ class AddContact(SuccessMessageMixin, LoginRequiredMixin,AjaxFormMixin, CreateVi
     model = Contact
     fields = ["first_name", "last_name", "working_at", "telephone", "email"]
     success_url = reverse_lazy('add-contacts')
-    success_message = "New contact succesfully registered !"
+    success_message = "New contact successfully registered !"
 
     labels  = {
             "first_name" : "First Name",
@@ -58,7 +58,7 @@ class ContactUpdateView(SuccessMessageMixin,LoginRequiredMixin,UpdateView):
             "telephone" : "Telephone Number",
             "email" : "Email adress"
             }
-    success_message = 'Contact succcesfully updated !'
+    success_message = 'Contact succcessfully updated !'
     def get_success_url(self):
         return reverse_lazy('detail-contact', kwargs={'pk': self.object.id})
 

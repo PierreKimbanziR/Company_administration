@@ -23,7 +23,7 @@ class AddCompany(SuccessMessageMixin,LoginRequiredMixin,AjaxFormMixin, CreateVie
     template_name = 'companies/add_company.html'
     model = Company
     fields =["Name", "Country", "Vat_Number", "Role"]
-    success_message = "New company registered succesfully !"
+    success_message = "New company registered successfully !"
 
     success_url = reverse_lazy('add-companies')
     labels = {
@@ -55,7 +55,7 @@ class CompanyUpdateView(SuccessMessageMixin,LoginRequiredMixin,UpdateView):
     model = Company
     template_name = "companies/company_update.html"
     fields =["Name", "Country", "Vat_Number", "Role"]
-    success_message = "Company succesfully updated !"
+    success_message = "Company successfully updated !"
 
     def get_success_url(self):
         return reverse_lazy('detail-company', kwargs={'pk': self.object.id} )
