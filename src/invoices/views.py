@@ -10,13 +10,15 @@ from django.views.generic import UpdateView
 from django.views.generic.detail import DetailView
 from django.views.generic import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+
 
 
 from src.mixins import  AjaxFormMixin
 from django.urls import reverse_lazy, reverse
 
 
-class AddInvoice(LoginRequiredMixin,AjaxFormMixin, CreateView):
+class AddInvoice(SuccessMessageMixin,LoginRequiredMixin,AjaxFormMixin, CreateView):
     login_url = reverse_lazy('login')
     redirect_field_name = 'redirect_to'
     template_name ="invoices/add_invoice.html"
@@ -30,7 +32,8 @@ class AddInvoice(LoginRequiredMixin,AjaxFormMixin, CreateView):
         'amount':'Amount',
         'type':'Type'
         }
-    success_url = reverse_lazy('show-invoices')
+    success_url = reverse_lazy('add-invoices')
+    success_message = "Invoices succesfully registered !"
 
 class InvoiceListView(LoginRequiredMixin,ListView):
     login_url = reverse_lazy('login')
@@ -39,13 +42,16 @@ class InvoiceListView(LoginRequiredMixin,ListView):
     template_name = "invoices/invoice_list.html"
     context_object_name = 'invoices'
 
-class InvoiceUpdateView(LoginRequiredMixin,UpdateView):
+class InvoiceUpdateView(SuccessMessageMixin,LoginRequiredMixin,UpdateView):
     login_url = reverse_lazy('login')
     redirect_field_name = 'redirect_to'
     model = Invoice
     template_name = "invoices/invoice_update.html"
+    success_message = "Invoices succesfully updated !"
+
     def get_success_url(self):
         return reverse_lazy('detail-invoice', kwargs={'pk': self.object.id})
+    
 
 
 class InvoiceDetailView(LoginRequiredMixin,DetailView):

@@ -1,6 +1,4 @@
 from django.http import JsonResponse
-from django.contrib import messages
-
 
 
 class AjaxFormMixin(object):
