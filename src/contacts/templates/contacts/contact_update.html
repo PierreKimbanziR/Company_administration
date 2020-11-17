@@ -4,7 +4,7 @@
 
 <div class=" container d-flex justify-content-center">
 <div class="card w-50">
-<h5 class="card-header blue-gradient white-text text-center py-4">
+<h5 class="card-header  mdb-color white-text text-center py-4">
 <strong>Update the contact</strong>
 </h5>
 <div  class="card-body  px-lg-5 pt-0">
@@ -26,7 +26,10 @@
         </div>
         {% endfor %}
 <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Update</button>
-
+<a href="{% url 'show-contacts' %}">
+        <button type="button" class="btn btn-outline-danger waves-effect btn-block z-depth-0 btn-rounded my-4 waves-effect">Cancel</button>
+    </a>
+    
 
     
 </form>

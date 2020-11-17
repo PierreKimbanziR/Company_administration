@@ -1,6 +1,19 @@
 {% extends 'companies/base.html' %}
 {% load widget_tweaks %}
 {% block content %}
+
+<div class="row d-flex justify-content-center" >
+  {% if messages %}
+  <div class="alert alert-success w-responsive text-center w-25" role="alert" id="message_container">
+      {% for message in messages %}
+      <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+      {% endfor %}
+  </div>
+  {% endif %}
+
+
+</div>
+
 <div class="row justify-content-center ">
   <div class="card card-cascade wider">
     <div class="card-body card-body-cascade ">
@@ -25,5 +38,11 @@
     </div>
     </div>
 </div>
+<script>
+  var message_ele = document.getElementById("message_container");
 
+setTimeout(function(){ 
+   message_ele.style.display = "none"; 
+}, 3000);
+</script>
 {% endblock %}

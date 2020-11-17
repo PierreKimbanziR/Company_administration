@@ -2,9 +2,22 @@
 {% load widget_tweaks %}
 {% block content %}
 
+
+<div class="row d-flex justify-content-center">
+    {% if messages %}
+    <div class="alert alert-success w-responsive text-center w-25" role="alert" id="message_container">
+        {% for message in messages %}
+        <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
+</div>
+
 <div class=" container d-flex justify-content-center">
 <div class="card w-50">
-<h5 class="card-header blue-gradient white-text text-center py-4">
+<h5 class="card-header  mdb-color white-text text-center py-4">
 <strong>Register a new person of contact</strong>
 </h5>
 <div  class="card-body  px-lg-5 pt-0">

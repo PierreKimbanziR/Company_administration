@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 
 from .models import Company
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 
 from django.views.generic. edit import CreateView
 from django.views.generic.list import ListView
@@ -14,11 +16,16 @@ from django.views.generic import DeleteView
 from src.mixins import  AjaxFormMixin
 from django.urls import reverse_lazy, reverse
 
-class AddCompany(AjaxFormMixin, CreateView):
+class AddCompany(SuccessMessageMixin,LoginRequiredMixin,AjaxFormMixin, CreateView):
+
+    login_url = reverse_lazy('login')
+    redirect_field_name = 'redirect_to'
     template_name = 'companies/add_company.html'
     model = Company
     fields =["Name", "Country", "Vat_Number", "Role"]
-    success_url = reverse_lazy('show-companies')
+    success_message = "New company registered successfully !"
+
+    success_url = reverse_lazy('add-companies')
     labels = {
         "Name": "Company name",
         "Country": "Company country",
@@ -26,23 +33,37 @@ class AddCompany(AjaxFormMixin, CreateView):
         "Role" :"Company role"
     }
 
-class CompanyListView(ListView):
+class CompanyListView(LoginRequiredMixin,ListView):
+    login_url = reverse_lazy('login')
+    redirect_field_name = 'redirect_to'
     model = Company
     context_object_name = "companies"
 
-class CompanyDetailView(DetailView):
+class CompanyDetailView(LoginRequiredMixin,DetailView):
+    
+    login_url = reverse_lazy('login')
+    redirect_field_name = 'redirect_to'
     model = Company
     template_name = "companies/company_detail.html"
 
 
-class CompanyUpdateView(UpdateView):
+class CompanyUpdateView(SuccessMessageMixin,LoginRequiredMixin,UpdateView):
+
+
+    login_url = reverse_lazy('login')
+    redirect_field_name = 'redirect_to'
     model = Company
     template_name = "companies/company_update.html"
     fields =["Name", "Country", "Vat_Number", "Role"]
+    success_message = "Company successfully updated !"
+
     def get_success_url(self):
         return reverse_lazy('detail-company', kwargs={'pk': self.object.id} )
 
-class CompanyDeleteView(DeleteView):
+class CompanyDeleteView(LoginRequiredMixin,DeleteView):
+
+    login_url = reverse_lazy('login')
+    redirect_field_name = 'redirect_to'
     model = Company
     success_url = reverse_lazy('show-companies')
     template_name = 'companies/company_list.html'

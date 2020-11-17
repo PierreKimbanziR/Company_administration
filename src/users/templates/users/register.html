@@ -35,7 +35,7 @@
     <div class=" container d-flex justify-content-center d-inline mt-5">
         <div class="card w-50 ">
         <h5 class="card-header  mdb-color white-text text-center py-4 align-middle">
-        <strong>Log In</strong>
+        <strong>Create your user account</strong>
         </h5>
         <div  class="card-body  px-lg-5 pt-0">
         <form class="md-form" action=""  method="post">
@@ -55,9 +55,9 @@
                 
                 </div>
                 {% endfor %}
-        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Log In</button>
-       <span>
-            <small> Doesn't have an account ?  <a href= {% url 'register' %}>Register Here</a></small>
+        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Register</button>
+        <span>
+            <small> Already have an account ?  <a href= {% url 'login' %}>Please Log in</a></small>
         </span>
         </form>
         </div>

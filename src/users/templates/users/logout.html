@@ -1,4 +1,14 @@
 {% extends 'companies/base.html' %}
 {% block content %}
-   you have been logged out
+<div class="container justify-content-center">
+<div class="card w-20" >
+<div class="card-body text-center">
+<h1>Bye !</h1>
+<b>You have been successfully logged out</b> <br>
+ <small><a href= {% url 'login' %} > Log in again</a></small>
+</div>
+</div>
+</div>
+
+
 {% endblock %}
