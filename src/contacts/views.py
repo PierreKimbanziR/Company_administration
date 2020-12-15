@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import AddContactForm
 from .models import Contact
+from companies.models import Company
 from django.views.generic. edit import CreateView
 from django.views.generic.list import ListView
 from django.views.generic import UpdateView

@@ -32,6 +32,17 @@
   {% block javascript %}{% endblock javascript %}
 </head>
 <body class= "mdb-color lighten-5">
+
+  <div class="row d-flex justify-content-center mt-5" >{% if messages %}
+    <div class="alert alert-success w-responsive text-center w-25" role="alert" id="message_container">
+        {% for message in messages %}
+        <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+  
+  </div>
+    
     <div class=" container d-flex justify-content-center d-inline mt-5">
         <div class="card w-50 ">
         <h5 class="card-header  mdb-color white-text text-center py-4 align-middle">
@@ -57,13 +68,18 @@
                 {% endfor %}
         <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Log In</button>
        <span>
-            <small> Doesn't have an account ?  <a href= {% url 'register' %}>Register Here</a></small>
+            <small> Doesn't have an account ?  <a href= {% url 'register' %}>Register here</a></small> <br>
+            <small> Forgotten password ?   <a href= {% url 'password-reset' %}>Reset your password</a></small>
         </span>
         </form>
         </div>
         
         </div>
         </div>
+
+ 
+
+  
 </body>
 </html>
 

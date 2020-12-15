@@ -3,9 +3,14 @@
 <div class="container justify-content-center">
 <div class="card w-20" >
 <div class="card-body text-center">
-<h1>Bye !</h1>
-<b>You have been successfully logged out</b> <br>
- <small><a href= {% url 'login' %} > Log in again</a></small>
+<strong>See you soon.</strong><br>
+<small class="text-muted">You have been successfully logged out</small>
+<span>
+    <small><form action= {% url 'login' %} >
+        <input type="submit" value="Login again" class="btn btn-cyan">
+    </form></small>
+</span>
+
 </div>
 </div>
 </div>

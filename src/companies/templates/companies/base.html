@@ -5,9 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Kimbanzi Corp</title>
+  <title>ManaCorp</title>
   <!-- MDB icon -->
-  <link rel="icon" href= '{% static  "img/mdb-favicon.ico" %}' type="image/x-icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Google Fonts Roboto -->
@@ -33,7 +32,7 @@
 </head>
 <body >
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark mdb-color darken-3 mb-4">
-        <a class="navbar-brand" href="#">PKR</a>
+        <a class="navbar-brand" href="#">MCR</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
           aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -55,8 +54,15 @@
             </li>
           </ul>
           <span class="navbar-text white-text">
-            <a href="{% url 'logout' %}">Logout</a>  ||
-            <a href= "{% url 'admin:index' %}" >Admin</a>
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item ">
+                <a href= "{% url 'admin:index' %}" class="nav-link">Admin</a>
+              </li>
+              <li class="nav-item ">
+                <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+              </li>
+              
+            </ul>
           </span>
         </div>
       </nav>
@@ -64,14 +70,7 @@
 {%  block content %}
 {% endblock %}
     <!-- Footer -->
-<footer class="page-footer font-small  mdb-color darken-1 fixed-bottom mt-4" >
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-      <a href="https://www.linkedin.com/in/pierre-kimbanzi-ruganda/"> Pierre Kimbanzi Ruganda</a>
-    </div>
-    <!-- Copyright -->
 
-  </footer>
   <!-- Footer -->
 
   <!-- End your project here-->
