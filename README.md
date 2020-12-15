@@ -20,8 +20,9 @@ The database contains 4 models : Companies (either client or provider), Contact 
 ### Authentication : 
 To manage the users creation/login/logout I used the django built-in Class Based View (LoginView, LogoutView). Users can retrieve their passwords using the email address. An email is sent to them containing a link to reset their password. 
 
-### User levels
+### User levels : 
 
 There is two user levels : users and admin user. 
 The users can read and update every database object. The admin users can CRUD everything. 
 
+## Layouts : 
