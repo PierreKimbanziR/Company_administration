@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from .forms import AddInvoiceForm
 from .models import Invoice
+from companies.models import Company
+from contacts.models import Contact
 from django.views.generic. edit import CreateView
 from django.views.generic.list import ListView
 from django.views.generic import UpdateView

@@ -37,9 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_countries',
+    'djmoney',
+    'phonenumber_field', 
     'companies',
     'invoices',
     'users',
+    'core',
     'contacts',
     'crispy_forms',
     'widget_tweaks'
@@ -130,3 +134,10 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = 'site-homepage'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_ADRESS')
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")

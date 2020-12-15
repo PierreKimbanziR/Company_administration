@@ -3,8 +3,11 @@ from __future__ import unicode_literals
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView
+
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+
 from django.urls import reverse_lazy
 
 from .forms import UserRegisterForm
@@ -26,6 +29,8 @@ class RegisterView(FormView):
         raw_password = form.cleaned_data.get('password1')
         user = authenticate(username=username, password=raw_password)
         login(self.request, user)
+        messages.add_message(self.request, messages.SUCCESS, 'Account successfully created, please log in.')
+
         return redirect('login')
 
 
