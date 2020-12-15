@@ -34,7 +34,9 @@ The users can read and update every database object. The admin users can CRUD ev
 ## Layouts : 
 The app is not yet deployed but here are a few screenshots. 
 
-### The homepage with a quick overviex of the last registered entries. 
+### The homepage with a quick overviex of the last registered entries.
+![Homepage]
+(https://github.com/PierreKimbanziR/Company_administration/blob/master/images/homepage.png)
 
 ### The invoices page. It contains an ordered table with a search option. There is also the possibility to choose by which parameter to search in the table. In the last column, there are different buttons to perform operations on the invoice in question (see in details, edit, delete). 
 
