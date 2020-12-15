@@ -4,6 +4,18 @@
 ## Overview
 This project is a full administration tool made with **Django**. This tool can be used to manage the differents operations a service company can encounter.
 
+## Layouts : 
+The app is not yet deployed but here are a few screenshots. 
+
+### The homepage with a quick overviex of the last registered entries.
+![Homepage](images/homepage.png)
+
+### The invoices page. It contains an ordered table with a search option. There is also the possibility to choose by which parameter to search in the table. In the last column, there are different buttons to perform operations on the invoice in question (see in details, edit, delete). 
+![invoices](images/invoices.png)
+
+### The page the user lands on when they have submitted their email address to change their password. 
+![passwordreset](images/passwordreset_emailsent.png)
+
 ## Technologies used 
 
 * Python
@@ -30,15 +42,3 @@ To manage the users creation/login/logout I used the django built-in Class Based
 
 There is two user levels : users and admin user. 
 The users can read and update every database object. The admin users can CRUD everything. 
-
-## Layouts : 
-The app is not yet deployed but here are a few screenshots. 
-
-### The homepage with a quick overviex of the last registered entries.
-![Homepage](images/homepage.png)
-
-### The invoices page. It contains an ordered table with a search option. There is also the possibility to choose by which parameter to search in the table. In the last column, there are different buttons to perform operations on the invoice in question (see in details, edit, delete). 
-![invoices](images/invoices.png)
-
-### The page the user lands on when they have submitted their email address to change their password. 
-![passwordreset](images/passwordreset_emailsent.png)
