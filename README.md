@@ -12,6 +12,12 @@ This project is a full administration tool made with **Django**. This tool can b
 * MDBoostrap
 * Sqlite
 
+### Useful dependecies I used : 
+*[Factory-boy](https://factoryboy.readthedocs.io/en/stable/index.html) : To make test and fill the db with dummy data.
+*[django-money](https://github.com/django-money/django-money) : To simply generate currency field inside the models. 
+*[django-phonenumber-field](https://github.com/stefanfoulis/django-phonenumber-field) : To create phonenumbers field in teh models.
+*[django-widget-tweaks](https://github.com/jazzband/django-widget-tweaks)  : To pass css classes to django form attribute wthout having to modify the python code. 
+
 ## Details 
 
 ### Database : 
